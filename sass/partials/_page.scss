@@ -11,20 +11,618 @@
 // in flexible grids. If you are, feel free to edit
 // the column mixins in _base.scss and please share.
 //---------------------------------------------------
-
 body, select, input, textarea {
   color: $font-color;
-  // Set your base font here, to apply evenly
-  // font-family: Georgia, serif;
+@include transition($background-transition);
 }
-
 //-----------------------------------
-// Basic layout
+// Layout
 //-----------------------------------
-
-body > * {
-	margin: 0 auto;
-	width: 20em;	
-	
+body > div#content, body > footer {
+	width: 80%;
 	@include six-column;
+}
+header[role=banner] {
+	margin-left: 10%;
+	@media screen and (min-width: 48em) { margin-left: 0; }
+	h1 {
+		@include set-size(margin-top, 4.5rem);
+		@include set-size(font-size, $base-plus-one);
+	}
+}
+body {
+/********************
+	Mobile & Basic
+ ********************/
+	div#content {
+		margin: 48px auto;
+		margin: 3rem auto;
+		@media screen and (min-width: 48em) {
+			margin: 125px auto;
+			margin: 7.5rem auto;
+		}
+		@include six-column;
+		article {
+			h1 {
+				@include set-size(font-size, $base-plus-two);
+			}
+			h2 {
+				@include set-size(font-size, $base-plus-one);
+				text-transform: uppercase;
+			}
+		}
+	}
+	& > footer {
+		clear: both;
+		@include six-column;
+		margin: 0 auto;
+		padding: 108px 0;
+		padding: 6rem 0;
+		@include set-size(height, 4rem);
+		background: transparent url(../images/yellowraven.png) center center no-repeat;
+		background-size: 150px 75px;
+		p, ul, li {
+			margin: 0;
+			padding: 0;
+		}
+		& > div { @include set-size(margin-top, 1.25rem); }
+		#docs {
+			@include two-column;
+			float: left;
+			text-align: right;
+			ul { list-style: none; }
+			li {
+				display: inline;
+				@include set-size(margin-right, 1rem);
+			}
+		}
+		#credits {
+			@include two-column;
+			float: right;
+		}
+		#info { display: none; }
+	}
+
+		#info, #info.night {
+			@include four-column;
+			color: $black;
+			h2 {
+				color: $dark-blue;
+				margin: 0; padding: 0;
+				text-align: center;
+			}
+			h3 { text-align: center; }
+			#settings-navigation { float: left; @include two-column; }
+			#settings-utilities { float: right; @include two-column; }
+			dl {
+				@include two-column;
+				dt {
+					float: left;
+					clear: both;
+					@include set-size(width, 1.5rem);
+					text-align: center;
+					@include margin-padding(padding, .3rem, .25rem);
+					@include set-size(margin-bottom, .5rem);
+					background: $black;
+					color: $white;
+				}
+				dt + dt {
+					clear: none;
+					@include set-size(margin-left, .25rem);
+					@include margin-padding(padding, .25rem);
+				}
+				dt span {
+			    	display: block;
+			    	text-indent: 100%;
+			    	white-space: nowrap;
+			    	overflow: hidden;
+			    	width: 0;
+					height: 0;
+				}
+				dd {
+					float: right;
+					@include margin-padding(padding, .25rem);
+					@include set-size(margin-bottom, .5rem);
+				}
+			}
+		}
+
+/*********************
+	Nav & Utilities
+ *********************/
+// Primary UI elements
+	div#utilities, nav div {
+		position: fixed;
+		z-index: 10;
+		background: $black;
+	    color: $white;
+	    @include border-radius(8px, 8px);
+	
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 4.5px 0;
+			padding: .25rem 0;
+			li {
+				@include set-size(height, 1.75rem);
+				@include set-size(margin-top, -.125rem);
+				float: left;
+				a, button {
+			    	display: block;
+			    	padding: 0 4.5px;
+			    	padding: 0 .625rem;
+			    	color: $white;
+			    	text-decoration: none;
+			    	
+			    	&:visited { color: $white; }
+			    	&:hover { color: $light-gray; }
+			    	span {
+			    		display: block;
+			    		text-indent: 100%;
+			    		white-space: nowrap;
+			    		overflow: hidden;
+			    		width: 0;
+			    		height: 0;
+			    	}
+				}
+				button {
+					background: transparent;
+	    			border: none;
+	    			padding-top: 3px;
+	    			padding-bottom: 6px;
+	    		}
+	    		button[disabled] { color: $light-green; opacity: .25;
+	    		@include transition(color .6s ease-out, opacity 1.8s ease-in-out .9s);
+	    		}
+				span {
+					display: block;
+					position: absolute;
+					text-indent: 100%;
+					white-space: nowrap;
+					overflow: hidden;
+					width: 0;
+					height: 0;
+				 }
+			}
+		}
+	}
+	div#utilities {
+		@include set-size(top, 2.75rem);
+		@include set-size(left, .75rem);
+		
+		li {
+	    	&.info, &.quiet-mode, &.explore-mode {
+	    		display: none;
+	    		@media screen and (min-width: 48em) {
+	    			display: block;
+	    		}
+			}
+		}
+		button {
+		    margin: 2px 0 0 -6px;
+	    	padding-bottom: 6px;
+
+		    &.entypo-light-up {
+		    	margin: 1px -2px 0;
+		    	@media screen and (min-width: 48em) {
+		    		margin-left: -6px;
+		    		margin-right: 0;
+		    	}
+		    }
+		    &.entypo-light-down { 
+		    	margin: 2px 0 0 0;
+		    	@media screen and (min-width: 48em) {
+		    		margin: 1px 2px 0 -4px;
+		    	}
+		    }
+		}
+	}
+	& > nav {
+		#local {
+			@include set-size(top, .5rem);
+			@include set-size(right, .75rem);
+    		mark a, a.active {
+    			color: $light-red;
+    			@include transition($color-transition);
+    			&:hover { color: $light-red; }
+    		}
+		}
+		#global {
+			@include set-size(top, .5rem);
+			@include set-size(left, .75rem);
+			@media screen and (min-width: 48em) {
+				@include set-size(top, 2.75rem);
+				@include set-size(right, .75rem);
+				left: auto;
+			}
+		    mark a, a.active {
+		    	color: $light-blue;
+		    	@include transition($color-transition);
+		    	&:hover { color: $light-blue; }
+			}
+		}
+	}
+// Icon Table of Contents
+	nav#toc {
+		clear: left;
+		float: left;
+		display: block;
+		text-align: center;
+		&:before {
+			content: " ";
+			display: block;
+			@include set-size(height, 3rem);
+			padding: 27px 0;
+			padding: 1.5rem 0;
+			width: 100%;
+			background: transparent url(../images/yellowraven.png) center center no-repeat;
+			background-size: 100px 50px;
+		}
+		ol {
+			li {
+				float: left;
+				@include set-size(height, 1rem);
+				@include set-size(width, 3.333rem);
+				margin: 0 0 0 -2px;
+				padding: 0 0 32px 0;
+				padding: 0 0 3rem 0;
+				@include set-size(font-size, $base-plus-one);
+				text-align: center;
+				@media screen and (min-width: 48em) {
+					@include set-size(width, 2.625rem);
+					padding: 0 0 27px 0;
+					padding: 0 0 1.5rem 0;
+				}
+				@media screen and (min-width: 60em) {
+					@include set-size(width, 3.25rem);
+				}
+				a {
+					position: absolute;
+					&.bookmark {
+						color: $red;
+					}
+					&.entypo-doc-text-inv, &.entypo-doc-text { margin: 0 -3px 0 3px; }
+				    span {
+				    	display: block;
+				    	position: absolute;
+				    	text-indent: 100%;
+				    	white-space: nowrap;
+				    	overflow: hidden;
+				    	width: 0;
+				    	height: 0;
+					}
+				}
+				mark {
+					a {
+						color: $dark-blue;
+					}
+				}
+			}
+		}
+	}
+/********************
+	Viewing Modes
+ ********************/
+//	Quiet Mode
+	&.quiet {
+		div#utilities button#quiet { color: $light-blue; }
+		nav#toc {
+			a {
+				color: $light-gray;
+				&:hover { color: $gray; }
+			}
+			mark a { color: $blue; }
+		}
+		.from { display: none; }
+	}
+//	Explore Mode
+	&.explore {
+		div#utilities button#explore { color: $light-blue; }
+	// Character colors
+		.matthew-bramble {
+			color: $matthew;
+			&:hover { color: $matthew-dark; }
+		}
+		.tabitha-bramble {
+			color: $tabitha;
+			&:hover { color: $tabitha-dark; }
+		}
+		.winifred-jenkins {
+			color: $winifred;
+		   	&:hover { color: $winifred-dark; }
+		}
+		.jery-melford {
+			color: $jery;
+			&:hover { color: $jery-dark; }
+		}
+		.lydia-melford {
+			color: $lydia;
+			&:hover { color: $lydia-dark; }
+		}
+		.wilson {
+			color: $wilson;
+			&:hover { color: $wilson-dark; }
+		}
+		 .jonathan-dustwich, .henry-davis {
+		 	color: $light-gray;
+		 	&:hover { color: $gray;}
+		 }
+	}
+//	Permalinks
+	span.permalink {
+		opacity: 0;
+		display: none;
+		@include transition($opacity-transition);
+	}
+	&.permalinks {
+		span.permalink {
+			opacity: 1;
+			display: block;
+			position: absolute;
+			@include set-size(font-size,.75rem);
+			@include set-size(margin-left,-4.5rem);
+			@media screen and (min-width: 48em) {
+				@include set-size(margin-left,-5rem);
+			}
+		}
+		button#show-permalinks { color: $light-blue; }
+	}
+//	Silent mode
+	header[role=banner], div#local, div#global, div#utilities {
+		opacity: .75;
+		@include transition($opacity-transition);
+	}
+	&.silenceNav {
+		header[role=banner], div#local, div#global, div#utilities {
+			opacity: .1;
+		}
+		header[role=banner]:focus, header[role=banner]:hover,
+		div#local:focus, div#local:hover,
+		div#global:focus, div#global:hover,
+		div#utilities:focus, div#utilities:hover {
+			opacity: .75;
+		}
+	}
+/*******************
+	Page Specific
+ *******************/
+// Home/Intro
+	&#home_page {
+		header[role=banner] {
+			margin: 48px 10% 24px;
+			margin: 3rem 10% 1.5rem;
+			@media screen and (min-width: 48em) {
+				margin: 81px auto 0;
+				margin: 4.5rem auto 0;
+			}
+			@include six-column;
+			h1 {
+				@include set-size (font-size, $base-plus-one);
+				@media screen and (min-width: 48em) {
+					@include set-size(font-size, $base-plus-four);
+				}
+				@media screen and (min-width: 60em) {
+					@include set-size(font-size, $base-plus-five);
+				}
+				a { text-decoration: none; }
+			}
+			h2 {
+				@include set-size(font-size, $base);
+				@media screen and (min-width: 48em) {
+					@include set-size(font-size, $base-plus-three);
+				}
+			}
+		}
+		div#content {
+			@include set-size(margin-top, 1.5rem);
+			@media screen and (min-width: 48em) {
+				@include set-size(margin-top, 4.5rem);
+			}
+			@include six-column;
+			section[role=main] {
+				@include six-column;
+			}
+		}
+		div#intro {
+			@include three-column;
+			float: left;
+		}
+		div#table-of-contents {
+			@include three-column;
+			float: right;
+		}
+		div#utilities {
+			@media screen and (min-width: 48em) {
+				@include set-size(top, .5rem);
+			}
+		}
+	}
+// Documentation pages
+	&#api_page, &#license_page, &#search_page {
+		header[role=banner] {
+			margin: 81px auto 0;
+			margin: 5.0625rem auto 0;
+			@include six-column;
+			h1 {
+				@include set-size(font-size, $base-plus-five);
+				a { text-decoration: none; }
+			}
+		}
+		div#utilities {
+			@include set-size(top, .5rem);
+		}
+		div#content {
+			@include set-size(margin-top, 4.5rem);
+			section[role=main] {
+				@include four-column;
+				margin: 0 auto;
+			}
+		}
+	}
+// Search
+	&#search_page {
+		#results { 
+			@include set-size(margin-top, 3rem);
+			
+			li {
+				clear: both; 
+				@include set-size(padding-bottom, 3rem);
+
+				h2 { @include set-size(font-size, $base-plus-one); }
+				div { @include two-column; }
+			}
+		}
+		
+		.search-from { float: left; }
+		.search-date { float: right; }
+	}
+
+
+// Book Header
+	&#chapter_page, &#book_chapter_page {
+		header[role=banner] {
+			z-index: 10;
+			@media screen and (min-width: 48em) {
+			    position: fixed;
+			    @include set-size(top, .5rem);
+			    @include set-size(left, .75rem);
+	
+			    background: $black;
+			    color: $white;
+	
+			    @include border-radius(8px, 8px);
+	
+			    h1 {
+			    	@include set-size(font-size, $base-plus-one);
+			    	@include margin-padding(padding, .125rem, .5rem);
+			    	margin: 0;
+			    	color: $white;
+			    	a { color: $white; text-decoration: none;
+			    		&:hover, &:focus { color: $light-blue; }
+			    	}
+			    }
+			}
+		}
+	}
+// Table of Contents
+	&#chapter_page {
+		#toc-visualized {
+			height: 0;
+			overflow-y: hidden;
+			opacity: 0;
+			
+			@include transition($opacity-transition, height .75s ease);
+
+			@include six-column;
+			margin: 0;
+		}
+		div#content {
+			@include set-size(margin-top, 7.5rem);
+			section[role=main] {
+				margin: 0 auto;
+			}
+			h1 { text-align: center; }
+			#chronological-order {
+				width: 0;
+				height: 0;
+				overflow: hidden;
+				opacity: 0;
+				float: right;
+				@include transition(width .75s ease .1s);
+			}
+		}
+		&.quiet {
+			section[role=main] {
+				@include three-column;
+				h2 { display: none; }
+				div#chapter-order, div#chronological-order {
+					@include four-column;
+				}
+			}
+		}
+		&.explore {
+			#toc-visualized {
+				opacity: 1;
+				@media screen and (min-width: 48em) {
+					display: block;
+					height: 250px
+				}
+				@media screen and (min-width: 60em) {
+					height: 270px;
+				}
+			}
+			div#content {
+				section[role=main] {
+					@include six-column;
+					h2 { 
+						display: none;
+						@media screen and (min-width: 48em) {
+							display: block;
+							text-align: center;
+						}
+					
+					}
+					div#chapter-order, div#chronological-order { @include three-column; }
+					#chapter-order { float: left; }
+					#chronological-order {
+						height: auto;
+						opacity: 1;
+						ol { list-style: none; }
+					}
+				}
+			}
+		}
+	}
+// Book Chapter
+	&#book_chapter_page {
+		section[role=main], nav#toc {
+			@include four-column;
+			float: left;
+			@include transition(margin-left .75s ease);
+		}
+		section[role=complimentary] {
+        	width: 0;
+	    	opacity: 0;
+	    	overflow: hidden;
+		}
+		&.quiet {
+			section[role=main], nav#toc {
+				@media screen and (min-width: 48em) {
+					@include set-size(margin-left, 8.26rem);
+				}
+				@media screen and (min-width: 60em) {
+					@include set-size(margin-left, 10.5rem);
+				}
+			}
+		}
+		&.explore {
+			div#content {
+				section[role=main], nav#toc {
+					margin-left: 0;
+				}
+				section[role=complimentary] {
+					@media screen and (min-width: 48em) {
+						@include two-column;
+						float: right;
+						display: block;
+						opacity: 1;
+
+						div { @include set-size(margin-top, 1.75rem); }
+						div#chapters-timeline {
+							svg { 
+								@include set-size(height, 110rem);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+//	No Javascript (Last to override all page specific changes)
+	.no-js {
+		div#local {
+			li.set-bookmark, li.goto-bookmark { display: none; }
+		}
+		div#utilities, li.show-permalinks { display: none; }
+	}
 }

@@ -1,0 +1,89 @@
+body.night {
+	background: $dark-blue;
+	color: $white;
+	
+	@include transition($background-transition);
+	
+$matthew: #dd8;
+$matthew-light: #ff9;
+
+$tabitha: #d8d;
+$tabitha-light: #f9f;
+
+$winifred: #8dd;
+$winifred-light: #9ff;
+
+$jery: #d88;
+$jery-light: #f99;
+
+$lydia: #88d;
+$lydia-light: #99f;
+
+$wilson: #8d8;
+$wilson-light: #9f9;
+
+$secondary: $gray;
+$secondary-light: $light-gray;
+
+
+	&.explore {
+	    .matthew-bramble, .matthew-bramble line { 
+			@include fillcolorstroke($matthew, $matthew-light);
+	    }
+	    .tabitha-bramble, .tabitha-bramble line { 
+			@include fillcolorstroke($tabitha, $tabitha-light);
+	    }
+	    .winifred-jenkins, .winifred-jenkins line { 
+			@include fillcolorstroke($winifred, $winifred-light);
+	    }
+	    .jery-melford, .jery-melford line { 
+			@include fillcolorstroke($jery, $jery-light);
+	    }
+	    .lydia-melford, .lydia-melford line { 
+			@include fillcolorstroke($lydia, $lydia-light);
+	    }
+	    .wilson, wilson line { 
+			@include fillcolorstroke($wilson, $wilson-light);
+	    }
+	
+		.jonathan-dustwich, .jonathan-dustwich line,
+		.henry-davis, henry-davis line { 
+			@include fillcolorstroke($secondary, $secondary-light);
+		}
+	}
+	
+	h1, h2, h3 {
+		color: $white;
+		opacity: .75;
+	}
+	
+	a {
+		color: $light-gray;
+		
+		&:hover, &:focus {
+			color: $light-blue;
+		}
+	}
+
+	nav#toc {
+    	a.bookmark { color: $red; }
+    	mark a { color: $light-blue; }
+    }
+	
+	&.quiet {
+
+		nav#toc {
+			a:hover, a:focus { color: $white; }
+		}	
+	}
+
+	&.explore {
+
+	}
+	
+	svg {
+		text { 
+			fill: $white;
+		}
+	}
+} 

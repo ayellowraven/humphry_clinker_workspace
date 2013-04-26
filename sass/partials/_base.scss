@@ -3,17 +3,22 @@
 @import "compass/utilities";
 
 // Basic colors
+$dark-blue: #024;
 $blue: #036;
 $light-blue: #69c;
+$dark-green: #242;
 $green: #363;
 $light-green: #9c9;
+$dark-purple: #224;
 $purple: #336;
 $light-purple: #99c;
 $gold: #663;
 $light-gold: #ff9;
+$dark-red: #422;
 $red: #633;
 $light-red: #c99;
 $black: #111;
+$light-gray: #ccc;
 $gray: #999;
 $white: #fff;
 
@@ -53,6 +58,50 @@ $invalid-background-color: $light-red !default;
 
   ---------------------------------------------------
 */
+
+/*--------------------------------------------------
+	Typographic Scale 
+  --------------------------------------------------
+	http://modularscale.com/scale/?px1=16&px2=12&ra1=1.5&ra2=0
+*/
+
+$base-plus-six: 5.063rem;
+$base-plus-five: 3.375rem;
+$base-plus-four: 2.25rem;
+$base-plus-three: 1.688rem;
+$base-plus-two: 1.5rem;
+$base-plus-one: 1.125rem;
+$base: 1rem;
+$base-minus-one: .75rem;
+$base-minus-two: .5rem;
+$base-minus-three: .333rem;
+$base-minus-four: .222rem;
+$base-minus-five: .099rem;
+$base-minus-six: .066rem;
+
+$line-height-small: $base-plus-two;
+$line-height-large: $base-plus-three;
+
+// Setting property sizes by rem
+@mixin set-size($property,$size) {
+	#{$property}: ($size / 1rem) * 16px;
+	#{$property}: $size;
+}
+
+// Setting margin or padding by rem
+@mixin margin-padding($property,$top, $right: $top, $bottom: $top, $left: $right) {
+
+//	@if $top > 0 and $right > 0 and $bottom > 0 and $left > 0 {
+		#{$property}: (($top / 1rem) * 16px) (($right / 1rem) * 16px) (($bottom / 1rem) * 16px) (($left / 1rem) * 16px);
+//	}
+//	@else if $top == auto or $right == auto or $bottom == auto or $left == auto {
+		
+//	}
+
+
+	#{$property}: $top $right $bottom $left;
+}
+
 
 @mixin one-column {
 	@media screen and (min-width: 48em) { width: 108px; width: 6.75rem; }
@@ -110,6 +159,32 @@ $invalid-background-color: $light-red !default;
 }
 
 // Transitions
-$color-transition: color 0.6s ease;
-$background-transition: background 0.3s ease;
+$color-transition: color 0.5s ease;
+$background-transition: background 0.5s ease;
 $border-transition: border 0.3s ease;
+$opacity-transition: opacity 0.5s ease;
+$width-transition: width .75s ease;
+
+// HC Specifics
+
+// Character colors
+$matthew: #dd8;
+$matthew-dark: #669;
+
+$tabitha: #d8d;
+$tabitha-dark: #969;
+
+$winifred : #8dd;
+$winifred-dark: #699;
+
+$jery : #d88;
+$jery-dark: #966;
+
+$lydia : #88d;
+$lydia-dark: #669;
+
+$wilson : #8d8;
+$wilson-dark: #696;
+
+$secondary : $light-gray;
+$secondary-dark: $gray;

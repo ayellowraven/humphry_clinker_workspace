@@ -1,0 +1,90 @@
+/* Colorbox */
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:$black;}
+#colorbox{outline:0; }
+/*
+    #cboxTopLeft{width:14px; height:14px; background:url(images/controls.png) no-repeat 0 0;}
+    #cboxTopCenter{height:14px; background:url(images/border.png) repeat-x top left;}
+    #cboxTopRight{width:14px; height:14px; background:url(images/controls.png) no-repeat -36px 0;}
+    #cboxBottomLeft{width:14px; height:43px; background:url(images/controls.png) no-repeat 0 -32px;}
+    #cboxBottomCenter{height:43px; background:url(images/border.png) repeat-x bottom left;}
+    #cboxBottomRight{width:14px; height:43px; background:url(images/controls.png) no-repeat -36px -32px;}
+    #cboxMiddleLeft{width:14px; background:url(images/controls.png) repeat-y -175px 0;}
+    #cboxMiddleRight{width:14px; background:url(images/controls.png) repeat-y -211px 0;}*/
+    #cboxContent{background:$white; overflow:visible; @include set-size(padding, 2rem); @include border-radius(8px, 8px); }
+        .cboxIframe{background:$white;}
+        #cboxError{padding:50px; border:1px solid $light-gray;}
+        #cboxLoadedContent{margin-bottom:5px;}
+        #cboxLoadingOverlay{background:url(images/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+        #cboxTitle{position:absolute; bottom:-25px; left:0; text-align:center; width:100%; font-weight:bold; color:#7C7C7C;}
+        #cboxCurrent{position:absolute; bottom:-25px; left:58px; font-weight:bold; color:#7C7C7C;}
+
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible;  position:absolute; bottom:-29px; background:url(images/controls.png) no-repeat 0px 0px; width:23px; height:23px; text-indent:-9999px;}
+        
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+
+        #cboxPrevious{left:0px; background-position: -51px -25px;}
+        #cboxPrevious:hover{background-position:-51px 0px;}
+        #cboxNext{left:27px; background-position:-75px -25px;}
+        #cboxNext:hover{background-position:-75px 0px;}
+        #cboxClose{right:0; background-position:-100px -25px;}
+        #cboxClose:hover{background-position:-100px 0px;}
+
+        .cboxSlideshow_on #cboxSlideshow{background-position:-125px 0px; right:27px;}
+        .cboxSlideshow_on #cboxSlideshow:hover{background-position:-150px 0px;}
+        .cboxSlideshow_off #cboxSlideshow{background-position:-150px -25px; right:27px;}
+        .cboxSlideshow_off #cboxSlideshow:hover{background-position:-125px 0px;}
+/* End Colorbox */
+
+
+/* Tooltips */
+.tipsy { @include set-size(font-size, .75rem); position: absolute; padding: 5px; z-index: 100000; }
+  .tipsy-inner { background-color: $black; color: $white; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { @include border-radius(8px, 8px); }
+  
+  /* Uncomment for shadow */
+  /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
+  
+  .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed $black; }
+  
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: $black; }
+  .tipsy-arrow-s { border-top-color: $black; }
+  .tipsy-arrow-e { border-left-color: $black; }
+  .tipsy-arrow-w { border-right-color: $black; }
+  
+	.tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+    .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
+  .tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+  .tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+  .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
+/* End Tipsy */

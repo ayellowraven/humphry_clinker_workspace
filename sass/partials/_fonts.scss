@@ -1,4 +1,339 @@
 // font-face fonts
 // see http://compass-style.org/docs/reference/compass/css3/font_face/
-
 //@import "compass/css3/font-face"
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+/* If webfonts are inactive */
+.wf-inactive {
+	#{headings()}, svg text { font-family: 'Times New Roman', serif; }
+		body, button, input, select, textarea { font-family: 'Georgia', serif; color: $font-color; }
+	body#home_page {
+		header h1 { @include set-size(font-size, $base-plus-five); }
+	}
+}
+/* If webfonts are loading */
+.wf-loading > * {
+	opacity: 0 !important;
+}
+/* If Webfonts are active */
+.wf-active {
+	#{headings()}, svg text { font-family: 'Old Standard TT'; }
+	body, button, input, select, textarea { font-family: 'Vollkorn'; }
+	body#home_page {
+		header h1#h1_0 {
+			@media screen and (min-width: 48em) { @include set-size(font-size, $base-plus-five); }
+		}
+	}
+
+/* Mixins for Chapter titles */
+// To Sir WATKIN PHILLIPS, of Jesus college, Oxon.
+@mixin sirWatkinPhillips {
+	.char9{margin:0 -3px 0 -2px;}
+    .char29{margin-left:-1px;}
+}
+// To Sir WATKIN PHILLIPS, Bart. of Jesus college, Oxon.
+@mixin sirWatkinPhillipsBart {
+	.char9{margin:0 -3px 0 -2px;}
+    .char34{margin-left: -1px;}
+}
+// To Sir WATKIN PHILLIPS, Bart. at Oxon.
+@mixin sirWatkinPhilipsatOxon {
+	.char9{margin:0 -3px 0 -2px;}
+}
+// Dear Wat
+@mixin dearWat {
+	.char8{margin:0 -1px 0 -1px;}
+}
+// TO Mrs MARY JONES, at Brambleton-hall.
+@mixin mrsMaryJones {
+	.char14{margin-left:-1px;}
+}
+// To Mrs GWYLLIM, house-keeper at Brambleton-hall.
+@mixin toMrsGwyllim {
+	.char9 {margin-left: -1px;}
+}
+// MRS GWYLLIM,
+@mixin mrsGwyllim {
+	.char6 {margin-left: -1px;}
+}
+	article#chapter_1 {
+	// To Mr HENRY DAVIS, Bookseller, in London.
+		h1#h1_0 {
+		    .char14 {margin: 0 -4px 0 -2px;}
+		}
+	// ABERGAVENNY, AUG. 4.
+		h2#h2_1 {
+			.char2 {margin-left: -1px;}
+			.char6 {margin-left: -1px;}
+		    .char7 {margin-left: -3px;}
+		    .char15 {margin-left: -1px;}
+		}
+	}
+	article#chapter_2 {
+	// To the Revd. Mr JONATHAN DUSTWICH.
+		h1#h1_0 {
+			.char10 {margin-left: -1px;}
+			.char18 {margin: 0 -2px;}
+			.char20 {margin: 0 -3px 0 -2px;}
+			.char27 {margin:0 -2px 0 -1px;}
+			.char32 {margin-left:-1px;}
+		}
+	}
+	article#chapter_4 {
+		h1#h1_0 {
+			@include toMrsGwyllim;
+		}
+		h2#h2_1 {
+			@include mrsGwyllim
+		}
+		h1#h1_1 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_5 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_9 {
+	// To Miss LYDIA MELFORD.
+		h1#h1_0 {
+			.char10{margin-left:-1px;}
+		}
+	}
+	article#chapter_10 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_11 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_14 {
+	// BATH, APRIL 24.
+		h2#h2_1 {
+			.char2{margin-left: -1px;}
+		}
+	}
+	article#chapter_15 {
+	// To Dr LEWIS. BATH, April 23.
+		h1#h1_0 {
+			.char16{margin-left:-2px;}
+		}
+	}
+	article#chapter_16 {
+	// To Miss WILLIS at Gloucester. BATH, April 26.
+		h1#h1_0 {
+			.char33{margin-left:-2px;}
+		}
+	}
+	article#chapter_17 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_20 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_23 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_25 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_26 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_27 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_30 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_33 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_35 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_36 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+		h2#h2_1 {
+			@include dearWat;
+		}
+	}
+	article#chapter_38 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_40 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_42 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+		h2#h2_1 {
+			@include dearWat;
+		}
+	}
+	article#chapter_44 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_45 {
+		h1#h1_0 {
+			@include toMrsGwyllim;
+		}
+		h2#h2_1 {
+			@include mrsGwyllim;
+		}
+	}
+	article#chapter_46 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_48 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_51 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_53 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_55 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_56 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_58 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_60 {
+		h1#h1_0 {
+			@include toMrsGwyllim;
+		}
+		h2#h2_1 {
+			@include mrsGwyllim;
+		}
+		h1#h1_1 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_62 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_63 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	@article#chapter_65 {
+		h1#h1_0 {
+			@include toMrsGwyllim;
+		}
+		h2#h2_1 {
+			@include mrsGwyllim;
+		}
+	}
+	article#chapter_67 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+		h2#h2_1 {
+			@include dearWat;
+		}
+	}
+	article#chapter_69 {
+		h1#h1_0 {
+			@include sirWatkinPhillips;
+		}
+	}
+	article#chapter_70 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_72 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_73 {
+		h1#h1_0 {
+			@include sirWatkinPhillipsBart;
+		}
+	}
+	article#chapter_76 {
+		h1#h1_0 {
+			@include sirWatkinPhilipsatOxon;
+		}
+		h2#h2_1 {
+			@include dearWat;
+		}
+	}
+	article#chapter_79 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+	article#chapter_81 {
+		h1#h1_0 {
+			@include sirWatkinPhilipsatOxon;
+		}
+	}
+	article#chapter_83 {
+		h1#h1_0 {
+			@include toMrsGwyllim;
+		}
+	}
+	article#chapter_84 {
+		h1#h1_0 {
+			@include mrsMaryJones;
+		}
+	}
+}

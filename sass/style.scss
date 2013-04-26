@@ -7,6 +7,7 @@
 // Now, you can simply include everything
 // (except print and helpers) by uncommeting this line
 //@include h5bp-normalize;
+@import "partials/plugins";
   
 // Or, you can import the "overrides" partial if
 // you want more control over individual mixins
@@ -15,7 +16,14 @@
 // Finally, put your own styles in these partials
 // and add more as needed (i.e. forms, tables, nav)
 @import "partials/fonts";
+@import "partials/typography";
 @import "partials/page";
+
+
+@import "partials/night";
+
+// Fallback for older browsers (mostly IE)
+@import "partials/fallback";
 
 // Helpers classes should come second-to-last
 @include h5bp-helpers;

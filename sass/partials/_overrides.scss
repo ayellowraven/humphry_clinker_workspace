@@ -34,7 +34,9 @@
 // @include h5bp-typography; // Ditching this for my own
 
 body {
-	@media screen and (min-width: 60em) { line-height: 27px; line-height: 1.688rem; }
+	text-rendering: optimizeLegibility;
+
+	@media screen and (min-width: 60em) { @include set-size(line-height,$base-plus-three); }
 }
 
 abbr[title] { border-bottom: 1px dotted; }
@@ -50,7 +52,7 @@ dfn { font-style: italic; }
 
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 
-ins { background: #ff9; color: #000; text-decoration: none; }
+ins { background: transparent; font-weight: bold; text-decoration: none; }
 
 mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
 
@@ -72,35 +74,39 @@ sub { bottom: -4px; bottom: -0.25em; }
 
 #{headings()}, dt { color: $blue; }
 h1 {
-	font-size: 36px;
-	font-size: 2.25rem;
+	@include set-size(font-size, $base-plus-four);
 }
+
 h2 {
-	font-size: 27px;
-	font-size: 1.688rem;
+	@include set-size(font-size, $base-plus-three);
 }
 h3, *[role=complimentary] dt {
-	font-size: 24px;
-	font-size: 1.5rem;
+	@include set-size(font-size, $base-plus-two);
 }
 
-#{headings(4,6)} { font-size: 18px; font-size: 1.125rem; font-weight: bold; }
+#{headings(4,6)} {
+	@include set-size(font-size, $base-plus-one);
+	font-weight: bold;
+}
 
 p, blockquote {
-	font-size: 16px;
-	font-size: 1rem;
+	@include set-size(font-size, $base-plus-one);
 }
 
-// Indents paragraphs that follow anything but a heading.
+img, svg { width: 100%; }
+
 img + p, aside + p, p + p, figure + p, figcaption + p, blockquote + p, q + p {
-	text-indent: 24px;
-	text-indent: 1.5rem;
+
 }
 
 // =============================================================================
 // Lists
 // =============================================================================
 @include h5bp-lists;
+
+ol, ul, dl {
+	margin: 0; padding: 0;
+}
 
 // =============================================================================
 // Embedded content
@@ -116,6 +122,63 @@ img + p, aside + p, p + p, figure + p, figcaption + p, blockquote + p, q + p {
 // Forms
 // =============================================================================
 @include h5bp-forms;
+
+#search_page {
+	form.search input[type=text] {
+		@media screen and (min-width: 48em) {
+			@include set-size(width, 20.25rem);
+		}
+		@media screen and (min-width: 60em) {
+			@include set-size(width, 36rem);
+		}
+	}
+}
+
+#book_chapter_page {
+	form.search input[type=text] {
+		@media screen and (min-width: 48em) {
+			@include set-size(width,12rem);
+		}
+		@media screen and (min-width: 60em) {
+			@include set-size(width, 15rem);
+		}
+	}
+}
+
+form {
+	&.search {
+		input[type=text] {
+			@include set-size(margin-right, .25rem);
+			padding: 2px 2px 1px;
+		}
+
+		button[type=submit] {
+			@include set-size(width, 1.75rem);
+			@include margin-padding(padding, .375rem, .125rem, .0625rem);
+			vertical-align: top;
+			margin: 0;
+		}
+	}
+
+		label {
+			display: block;
+			position: absolute;
+			text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			width: 0;
+			height: 0;
+		}
+
+	span {
+		display: block;
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		width: 0;
+		height: 0;
+	}
+}
 
 // =============================================================================
 // Tables

@@ -1,0 +1,26 @@
+{
+	"letters": {
+		"properties": {
+			"title": {
+				"type" : "multi_field",
+				"store" : "yes",
+				"fields" : {
+					"title": {"type" : "string"},
+                    "symphony_fulltext" : {"type" : "string", "analyzer": "symphony_fulltext"},
+                    "symphony_autocomplete" : {"type" : "string", "analyzer": "symphony_autocomplete"}
+                },
+                "boost": 1.0
+			},
+			"letter": {
+				"type" : "multi_field",
+				"store" : "yes",
+				"fields" : {
+					"note": {"type" : "string"},
+                    "symphony_fulltext" : {"type" : "string", "analyzer": "symphony_fulltext"},
+                    "symphony_autocomplete" : {"type" : "string", "analyzer": "symphony_autocomplete"}
+                },
+                "boost": 2.0
+			}
+		}
+	}
+}

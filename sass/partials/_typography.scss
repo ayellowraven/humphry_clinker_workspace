@@ -1,0 +1,85 @@
+// =============================================================================
+// Transitions
+// =============================================================================
+* {
+	@include transition($color-transition);
+	@include transition($background-transition);
+	@include transition($opacity-transition);
+	@include transition($width-transition);
+}
+
+a { 
+	@include transition($color-transition); 
+	&:hover, &:focus { @include transition($color-transition); }
+}
+
+nav {
+	a { text-decoration: none; }
+
+	mark {
+		background: none;
+		font-style: normal;
+	}
+}
+
+p+p { text-indent: none; }
+
+header[role=banner] h2 {
+	margin-top: 0;
+}
+
+// =============================================================================
+// SVGs
+// =============================================================================
+
+@mixin fillcolorstroke($normal-color, $focus-color) {
+	color: $normal-color;
+	fill: $normal-color;
+	stroke: $normal-color;
+	
+	&:hover, &:focus {
+	color: $focus-color;
+	fill: $focus-color;
+	stroke: $focus-color;	
+	}
+}
+
+svg {
+	width: 100%;
+	max-width: 100%;
+	display: block;
+
+	path,line { fill: none; }
+	a:hover line, a:focus line { stroke-width: 2px; }
+	
+	text { 
+		fill: $gray;
+		stroke: none;
+	}
+	
+	.matthew-bramble, .matthew-bramble line {
+		@include fillcolorstroke($matthew, $matthew-dark);
+	}
+	
+	.tabitha-bramble, tabitha-bramble line {
+		@include fillcolorstroke($tabitha, $tabitha-dark);
+	}
+
+    .winifred-jenkins, .winifred-jenkins line {
+		@include fillcolorstroke($winifred, $winifred-dark);
+    }
+    .jery-melford, jery-melford line {
+		@include fillcolorstroke($jery, $jery-dark);
+    }
+    .lydia-melford, .lydia-melford line {
+		@include fillcolorstroke($lydia, $lydia-dark);
+    }
+    .wilson, .wilson line {
+		@include fillcolorstroke($wilson, $wilson-dark);
+    }
+
+	.jonathan-dustwich, .henry-davis,
+	.jonathan-dustwich line, .henry-davis line {
+		@include fillcolorstroke($secondary, $secondary-dark);
+	}
+}

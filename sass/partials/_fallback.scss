@@ -1,0 +1,12 @@
+/* IE 8 and older */
+body.lte-ie8 {		
+	div#utilities {
+		li {
+	    	&.info, &.quiet-mode, &.explore-mode {
+	    		display: none;
+			}
+		}
+	}
+
+	svg { display: none; }
+}
